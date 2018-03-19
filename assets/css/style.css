@@ -1,0 +1,58 @@
+body {
+    background-image: url('../images/bg/vintage-concrete.png');
+}
+
+.jumbotron {
+    background-image: url('../images/header/pyramids7.png');
+    height: 400px;
+    color: white;
+}
+
+.jumbotron-content {
+    text-align: center;
+    line-height: 2em;
+}
+
+#trivia-game-footer {
+    color: maroon;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+}
+
+.trivia-game-navbar {
+    margin-bottom: 0;
+}
+
+.trivia-img-padding {
+    margin-bottom: 50px;
+}
+
+.trivia-hints {
+    background-color: white;
+    border-style: solid;
+    border-width: 5px;
+    border-color: darkgreen;
+    margin-right: 50px;
+    margin-left: 10px;
+    margin-bottom: 100px;
+    padding-top: 20px;
+    height: 500px;
+}
+
+.trivia-question {
+    background-color: white;
+    border-style: solid;
+    border-width: 5px;
+    border-color: darkgreen;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 100px;
+    padding-top: 20px;
+    height: 500px;
+}
+
+.trivia-hints-header {
+    color: maroon;
+    margin-bottom: 20px;
+}

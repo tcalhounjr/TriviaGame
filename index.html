@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/favicon/tcjr-brand.png" type="image/gif">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body onload="getCopyrightDate();">
+    <div class="jumbotron">
+        <div class="container">
+           <p><h1 class="jumbotron-content">Pick a game theme</h1></p>
+            <p id="jumbotron-game-instructions" class="jumbotron-content">THESE ARE GAME INSTRUNCTIONS</p>
+            <p class="jumbotron-content">
+                <button class="btn btn-primary btn-lg jumbotron-buttons" type="button" id="nintendo">nintendo</button>
+                <button class="btn btn-primary btn-lg jumbotron-buttons" type="button" id="geography">geography</button>
+            </p>
+        </div><!--container div-->
+    </div><!--jumbotron div-->
+
+    <!--<div class="header-img-container"></div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 trivia-hints">
+                <header class="trivia-hints-header"><h1>Trivia Hints</h1></header>
+                <hr class="trivia-hints-hr">
+            </div>
+            <div class="col-md-5 trivia-question">
+                <header class="trivia-hints-header"><h1>Trivia Question</h1></header>
+                <hr class="trivia-hints-hr">
+            </div>
+        </div>
+    </div>
+        <div class="game-play">
+            <h1><span>WHEEL OF FORTUNE</span></h1>
+            <br>
+            <h2>Guess a letter: <span id="user-guess"><strong></strong></span></h2>
+            <br>
+            <h3>Your Wins: <span id="user-wins"><strong></strong></span></h3>
+            <br>
+            <h3>Your Losses: <span id="user-losses"><strong></strong></span></h3>
+            <br>
+            <h3>Guesses Remaining: <span id="guesses-left"><strong></strong></span></h3>
+            <br>
+            <h3>Your guesses so far: <span id="guess-history"><strong></strong></span></h3>
+            <br>
+            <h3>Fine I'll tell you. The word was: <span id="cpu-word"><strong></strong></span></h3>
+            <br>
+            <h1 id="solve"><span>PRESS ENTER TO SOLVE THE PUZZLE</span></h1>
+        </div>
+        <br>
+        <br>
+        <br>
+        <nav class="navbar fixed-bottom navbar-default trivia-game-navbar">
+            <footer id="trivia-game-footer" class="navbar-text">
+                YET ANOTHER COPYRIGHT DATE TEST
+            </footer>
+        </nav>
+    
+
+<script src="assets/javascript/app.js"></script>    
+</body>
+</html>
