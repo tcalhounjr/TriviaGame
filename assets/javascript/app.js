@@ -121,7 +121,7 @@ $(document).ready(function() {
         $(".jumbotron-buttons").hide();
         randomCountry = getRandomCountry(0,countries.isoCodeArray.length,countries.isoCodeArray);
         console.log("Updated country code is", randomCountry);
-        multiChoiceArray = buildMultiChoiceArray(0,countries.countryArray.length,countries.countryArray)
+        multiChoiceArray = buildMultiChoiceArray(0,countries.countryArray.length,countries.countryArray);
         countries.getPopulationData();
         countries.getGDPData();
         countries.getGNPData();
