@@ -115,6 +115,7 @@ var countries = {
     
     getPopulationData: function() {
         popQueryURL = "https://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/SP.POP.TOTL?date=2016&format=json";
+        console.log(popQueryURL);
         $.ajax({
             url: popQueryURL,
             method: "GET"
