@@ -2,7 +2,7 @@ function getCopyrightDate() {
     var copyright = document.getElementById('trivia-game-footer');
 
     var todaysDate = new Date();
-    copyright.innerHTML = 'Developed by TCJR  &nbsp; &nbsp; Copyright ' + todaysDate.getFullYear();
+    copyright.innerHTML = 'Copyright ' + todaysDate.getFullYear() + ' TCJR';
 }
 
 function getRandomInt(min, max) {
@@ -14,6 +14,7 @@ function getRandomInt(min, max) {
 
 function buildMultiChoiceArray (min, max, array) {
     var guessArray = [];
+    array = shuffle(array);
     for (i = 0; i < 3; i++) {
         var index = getRandomInt(min, max);
         guessArray.push(array[index]);
@@ -22,8 +23,16 @@ function buildMultiChoiceArray (min, max, array) {
     return guessArray;
 }
 
+function initializeGame() {
+    countries.getPopulationData();
+    countries.getGDPData();
+    countries.getGNPData();
+    console.log('Initialize game multi choice array ',multiChoiceArray);
+}
+
 function getRandomCountry(min, max, array) {
     var index = getRandomInt(min, max);
+    array = shuffle(array);
     var iso = array[index];
     return iso;
 }
@@ -37,19 +46,55 @@ function writeToScreen(htmlSelector, newValue) {
     }
 }//One f(x) to handle all of the screen printing capabilities
 
+function buildGameBoard(gameArray) {
+    gameArray = shuffle(gameArray);
+    console.log('The gameArray has ',gameArray.length, ' elements');
+    var gameElement = 1;
+    for (var i = 0; i < gameArray.length; i++) {
+        var divHTML = $("<div class='radio'>");
+        var labelHTML = $("<label class='radio-label'>");
+        var radioHTML = $("<input type='radio' name='optionsRadios'>");
+        divHTML.appendTo(radioDIV);
+        labelHTML.appendTo(divHTML);
+        radioHTML.prependTo(divHTML);
+        
+        radioHTML.attr('id', 'optionsRadios' + gameElement);
+        radioHTML.attr('value', gameArray[i]);
+        labelHTML.text(gameArray[i]);
+        console.log(gameElement, ' loop');
+        gameElement++;
+    }
+}
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+//$(labelHTML).appendTo(".radio");
 
 const movieTrivia = "#movies";
 const geographyTrivia = "#geography";
 const popHTML = "#population";
 const gdpHTML = "#gdp";
 const gnpHTML = "#gnp";
+const radioDIV = $(".radio-container");
 
-
-var internetCvg = 0;
-var mobileCvg = 0;
 var randomCountry = "gha";
 var multiChoiceArray = [];
-
 
 var countries = {
     desc: "This category features countries from the African continent. How well do you know your world geography.",
@@ -58,10 +103,10 @@ var countries = {
                "caf", "cmr", "cog", "gab", "tza", "mwi", "zmb", "ago", "nam", "bwa", "zwe", 
                "moz","mdg", "zaf"],
 
-    countryArray: ["SENEGAL","GUINEA","SIERRA LEONE","IVORY COAST", "GHANA","MAURITANIA", "NIGERIA","CHAD","MALI","WESTERN SAHARA",
-                   "ERITRIA","MOROCCO","ALGERIA","TUNISIA","LYBIA","EGYPT","SUDAN","ETHIOPIA","SOMALIA","KENYA","UGANDA",
-                   "DEMOCRATIC REPUBLIC OF THE CONGO","CENTRAL AFRICAN REPUBLIC","CAMEROON","CONGO","GABON","TANZANIA","MALAWI","ZAMBIA",
-                   "ANGOLA","NAMIBIA","BOTSWANA","ZIMBABWE","MOZAMBIQUE","MADAGASCAR","SOUTH AFRICA"],
+    countryArray: ["Senegal","Guinea","Sierra Leone","Ivory Coast", "Ghana","Mauritania", "Nigeria","Chad","Mali","Western Sahara",
+                   "Eritrea","Morocco","Algeria","Tunisia","Lybia","Egypt","Sudan","Ethiopia","Somalia","Kenya","Uganda",
+                   "Democratic Republic of the Congo","Central African Republic","Cameroon","Congo","Gabon","Tanzania","Malawi","Zambia",
+                   "Angola","Namibia","Botswana","Zimbabwe","Mozambique","Madagascar","South Africa"],
 
     countryGDP: 0,
     countryPop:  0,
@@ -69,7 +114,7 @@ var countries = {
     countryName: "",
     
     getPopulationData: function() {
-        popQueryURL = "http://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/SP.POP.TOTL?date=2016&format=json";
+        popQueryURL = "https://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/SP.POP.TOTL?date=2016&format=json";
         $.ajax({
             url: popQueryURL,
             method: "GET"
@@ -82,11 +127,12 @@ var countries = {
             console.log("Number of people ", countryPop);
             writeToScreen(popHTML, countryPop.toLocaleString());
             console.log(countryName);
+            buildGameBoard(multiChoiceArray);
         });
     },
 
     getGDPData: function() {
-        gdpQueryURL = "http://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/NY.GDP.MKTP.CD?date=2016&format=json";
+        gdpQueryURL = "https://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/NY.GDP.MKTP.CD?date=2016&format=json";
         $.ajax({
             url: gdpQueryURL,
             method: "GET"
@@ -99,7 +145,7 @@ var countries = {
     },
 
     getGNPData: function() {
-        gniQueryURL = "http://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/NY.GNP.PCAP.CD/?date=2016&format=json";
+        gniQueryURL = "https://api.worldbank.org/v2/countries/" + randomCountry + "/indicators/NY.GNP.PCAP.CD/?date=2016&format=json";
         $.ajax({
             url: gniQueryURL,
             method: "GET"
@@ -114,7 +160,7 @@ var countries = {
 
 $(document).ready(function() {
     $(movieTrivia).on("click", function(event) {
-        alert("Not yet implemented. Click geography!");
+        alert("Not yet implemented. Check back later for an updated version. In the meantime, click geography!");
     });
 
     $(geographyTrivia).on("click", function(event) {
@@ -122,8 +168,7 @@ $(document).ready(function() {
         randomCountry = getRandomCountry(0,countries.isoCodeArray.length,countries.isoCodeArray);
         console.log("Updated country code is", randomCountry);
         multiChoiceArray = buildMultiChoiceArray(0,countries.countryArray.length,countries.countryArray);
-        countries.getPopulationData();
-        countries.getGDPData();
-        countries.getGNPData();
+        console.log('Multiple choice array ', multiChoiceArray);
+        initializeGame();
     });
 });

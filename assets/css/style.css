@@ -103,3 +103,19 @@ button.trivia-buttons:hover {
 .trivia-statistics {
     color: black;
 }
+
+.submit-button {
+    background-color: maroon;
+    border: none;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+button.submit-button:hover {
+    background-color: darkgreen;
+}
+
+.radio {
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
